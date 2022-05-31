@@ -13,7 +13,7 @@ const thoughtSchema = new Schema(
         createdAt: {
             type: Date, 
             default: Date.now(),
-            get: 
+            get: dateFormat => moment(dateFormat).format("MM Do YY")
         },
         username: {
             type: String,
@@ -22,5 +22,7 @@ const thoughtSchema = new Schema(
         reactions: [reactionSchema]
     },
 )
+
+const Thought = model ('Thought', thoughtSchema)
 
 module.exports = thought;
