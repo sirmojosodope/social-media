@@ -19,13 +19,26 @@ module.exports = {
   },
   // Create
   createThoughts(req, res) {
-    Thoughts.create(req.body)
-      .then((thoughts) => res.json(thoughts))
-      .catch((err) => {
-        console.log(err);
-        return res.status(500).json(err);
-      });
-  },
+      Thoughts.create(req.body)
+        .then((thought) => {
+          return User.findOneAndUpdate(
+            { _id: req.body.userId },
+            { $addToSet: { thoughts: thought.thoughtId } },
+            { runValidators: true, new: true }
+          );
+        })
+        .then((user) =>
+          !user
+            ? res
+                .status(404)
+                .json({
+                  message: "No matching username found. Thought still created.",
+                })
+            : res.json(user)
+        )
+        .catch((err) => res.status(500).json(err));
+    },
+    
   //Update
   updateThoughts(req, res) {
     Thoughts.findOneandUpdate(
