@@ -24,3 +24,4 @@ Contributors: Lamont
 The following is needed to run the test: 
 # Questions 
 If you have any questions about the reportError, open an issue or contact stoverlee29@gmail.com
+![demo](https://user-images.githubusercontent.com/97686342/171306634-5e2ff1ab-9204-4c47-8d5c-f50c0fdc876f.gif)
